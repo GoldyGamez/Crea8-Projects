@@ -30,17 +30,14 @@ jobs:
     - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-    - name: Install Ngrok
+    - name: Install pplayit.gg
       run: |
-        wget -O ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-        unzip ngrok.zip
-        echo "See Below"
-        read -p "Paste authtoken here (Copy and Right-click to paste): " CRP
-        ./ngrok authtoken $CRP
+        wget -O playit https://playit.gg/downloads/playit-linux_64-0.4.6
+        chmod +x ./playit
     - name: Install Server
       run: |
         wget -O geyser.jar https://ci.opencollab.dev//job/GeyserMC/job/Geyser/job/master/lastSuccessfulBuild/artifact/bootstrap/standalone/target/Geyser.jar
     - name: Run Server
       run: |
-        ./ngrok tcp 25565
         java -Xms5G -Xmx20G -jar geyser.jar
+        ./playit
