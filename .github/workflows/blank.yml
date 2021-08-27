@@ -30,14 +30,17 @@ jobs:
     - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-    - name: Install pplayit.gg
+    - name: Install playit.gg
       run: |
         wget -O playit https://playit.gg/downloads/playit-linux_64-0.4.6
         chmod +x ./playit
     - name: Install Server
       run: |
-        wget -O geyser.jar https://ci.opencollab.dev//job/GeyserMC/job/Geyser/job/master/lastSuccessfulBuild/artifact/bootstrap/standalone/target/Geyser.jar
+        wget -O geyser.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.11.01.zip
     - name: Run Server
       run: |
-        java -Xms5G -Xmx20G -jar geyser.jar
+        unzip geyser.zip
+        cd geyser
+        chmod +x ./bedrock_server.exe
         ./playit
+        ./bedrock_server.exe
