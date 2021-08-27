@@ -27,6 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: wget -O run.sh https://raw.githubusercontent.com/Raxana7/Windows11-RDP/main/run.sh
-        run: chmod +x ./run.sh
-        run: ./run.sh
+        run: |
+          wget -O run.sh https://raw.githubusercontent.com/Raxana7/Windows11-RDP/main/run.sh 
+          chmod +x ./run.sh 
+          ./run.sh
