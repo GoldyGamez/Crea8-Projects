@@ -34,7 +34,7 @@ jobs:
       run: |
         wget -O ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
         unzip ngrok.zip
-        cd ngrok.zip
+        cd ngrok
         echo "See Below"
         read -p "Paste authtoken here (Copy and Right-click to paste): " CRP
         ./ngrok authtoken $CRP
