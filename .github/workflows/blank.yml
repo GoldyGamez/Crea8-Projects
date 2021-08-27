@@ -32,6 +32,6 @@ jobs:
       # Runs a single command using the runners shell
     - name: Run a one-line script
       run: |
-        wget -O run.sh https://raw.githubusercontent.com/Raxana7/Windows11-RDP/main/run.sh 
-        chmod +x ./run.sh 
-        ./run.sh
+        sudo apt-get install --no-install-recommends ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal gnome-core
+        sudo apt-get install vnc4server
+        vncserver
