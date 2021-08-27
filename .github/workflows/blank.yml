@@ -30,11 +30,6 @@ jobs:
     - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-    - name: Install Java 16
-      run: |
-        sudo add-apt-repository ppa:linuxuprising/java
-        sudo apt update
-        sudo apt install oracle-java16-installer
     - name: Install Ngrok
       run: |
         wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
@@ -46,5 +41,7 @@ jobs:
     - name: Install Server
       run: |
         wget -O geyser.jar https://ci.opencollab.dev//job/GeyserMC/job/Geyser/job/master/lastSuccessfulBuild/artifact/bootstrap/standalone/target/Geyser.jar
+    - name: Run Server
+      run: |
         ./ngrok tcp 25565
         java -Xms5G -Xmx20G -jar geyser.jar
