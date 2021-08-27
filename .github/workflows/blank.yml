@@ -30,8 +30,21 @@ jobs:
     - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-    - name: Run a one-line script
+    - name: Install Java 16
       run: |
-        sudo apt-get install --no-install-recommends ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal gnome-core
-        sudo apt-get install vnc4server
-        vncserver
+        sudo add-apt-repository ppa:linuxuprising/java
+        sudo apt update
+        sudo apt install oracle-java16-installer
+    - name: Install Ngrok
+      run: |
+        wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+        unzip ngrok-stable-amd64.zip
+        cd ngrok-stable-amd64.zip
+        echo "See Below"
+        read -p "Paste authtoken here (Copy and Right-click to paste): " CRP
+        ./ngrok authtoken $CRP
+    - name: Install Server
+      run: |
+        wget -O geyser.jar https://ci.opencollab.dev//job/GeyserMC/job/Geyser/job/master/lastSuccessfulBuild/artifact/bootstrap/standalone/target/Geyser.jar
+        ./ngrok tcp 25565
+        java -Xms5G -Xmx20G -jar geyser.jar
